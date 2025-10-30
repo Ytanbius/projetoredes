@@ -2,7 +2,6 @@ using UnityEditor.Analytics;
 using UnityEngine;
 using Fusion;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 
 public class GameManager : MonoBehaviour
 {
