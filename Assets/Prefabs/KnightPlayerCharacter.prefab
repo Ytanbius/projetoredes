@@ -180,11 +180,12 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  jumpForce: 400
+  checkpoint: {fileID: 6378992047229516993, guid: 16db99b689f52e14a9a2ceac85e0238a, type: 3}
+  jumpForce: 550
   moveSpeed: 250
   drag: 0.9
-  jump: 0
   grounded: 0
+  jump: 0
 --- !u!50 &1975366070922325557
 Rigidbody2D:
   serializedVersion: 5

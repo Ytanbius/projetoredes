@@ -7,8 +7,8 @@ using UnityEditorInternal;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public HudManager hud;
+    public CheckPointManager checkPointManager;
+    public HudManager hudManager;
     public NetworkRunner Runner;
     NetworkSceneInfo _info = new NetworkSceneInfo();
 
@@ -16,11 +16,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        hud = this.gameObject.GetComponent<HudManager>();
+        hudManager = instance.gameObject.GetComponent<HudManager>();
+        checkPointManager = instance.gameObject.GetComponent<CheckPointManager>();
         var _sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
         _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
     }
-    public void StartGame()
+    public void StartSharedGame()
     {
         Runner.StartGame(new StartGameArgs()
         {
@@ -28,8 +29,24 @@ public class GameManager : MonoBehaviour
             GameMode = GameMode.Shared
         });
     }
+    public void StartSPGame()
+    {
+        Runner.StartGame(new StartGameArgs()
+        {
+            Scene = _info,
+            GameMode = GameMode.Single
+        });
+    }
     public void HudChange(GameObject tela)
     {
-        hud.ChangeCanvas(tela);
+        hudManager.ChangeCanvas(tela);
+    }
+    public void LoadLastCheckPoint(GameObject player, GameObject checkpoint)
+    {
+        KnightPlayerBehavior playerBehavior;
+        playerBehavior = player.GetComponent<KnightPlayerBehavior>();
+        playerBehavior.enabled = false;
+        checkPointManager.LoadLastCheckPoint(player, checkpoint);
+        playerBehavior.enabled = true;
     }
 }
