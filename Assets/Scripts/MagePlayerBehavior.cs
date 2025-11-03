@@ -30,6 +30,5 @@ public class MagePlayerBehavior : NetworkBehaviour
     public void MoveInput(Vector2 moveDir)
     {
         move = moveDir;
-        Debug.Log(move);
     }
 }

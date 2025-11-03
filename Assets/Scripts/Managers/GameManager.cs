@@ -3,16 +3,21 @@ using UnityEngine;
 using Fusion;
 using UnityEngine.SceneManagement;
 using UnityEditorInternal;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public ServerManager serverManager;
     public CheckPointManager checkPointManager;
     public HudManager hudManager;
     public NetworkRunner Runner;
     NetworkSceneInfo _info = new NetworkSceneInfo();
 
+    public GameObject serverPrefab;
 
+    public string nickname;
     private void Awake()
     {
         instance = this;
@@ -20,6 +25,10 @@ public class GameManager : MonoBehaviour
         checkPointManager = instance.gameObject.GetComponent<CheckPointManager>();
         var _sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
         _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
+    }
+    private void Update()
+    {
+        Debug.Log(nickname);
     }
     public void StartSharedGame()
     {
@@ -48,5 +57,9 @@ public class GameManager : MonoBehaviour
         playerBehavior.enabled = false;
         checkPointManager.LoadLastCheckPoint(player, checkpoint);
         playerBehavior.enabled = true;
+    }
+    public void ChangeNick(GameObject input)
+    {
+        nickname = input.GetComponent<TextMeshProUGUI>().text;
     }
 }

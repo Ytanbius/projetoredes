@@ -10,14 +10,11 @@ public class SpikeTrapbehavior : NetworkBehaviour
     {
         objCollider = GetComponent<Collider2D>();
     }
-    public override void FixedUpdateNetwork()
+    private void OnTriggerStay2D(Collider2D other)
     {
-        GameObject player;
-        KnightPlayerBehavior playerBehavior;
-        player = Runner.GetPhysicsScene2D().OverlapArea(objCollider.bounds.min, objCollider.bounds.max, playerMask).gameObject;
-        if (player != null)
+        KnightPlayerBehavior playerBehavior = other.GetComponent<KnightPlayerBehavior>();
+        if (playerBehavior != null)
         {
-            playerBehavior = player.GetComponent<KnightPlayerBehavior>();
             playerBehavior.onDeath();
         }
     }

@@ -41,11 +41,11 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         if (Mathf.Abs(move.x) > 0)
         {
-            rb.linearVelocity = new Vector2(move.x * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(Mathf.Round(move.x) * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
         }
         if (move.y > 0 && grounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, move.y * Runner.DeltaTime * jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Round(move.y) * Runner.DeltaTime * jumpForce);
         }
     }
 

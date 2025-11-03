@@ -8,6 +8,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
-        GameManager.instance.HudChange(_tela);
+        if(player == Runner.LocalPlayer)
+        {
+            GameManager.instance.HudChange(_tela);
+        }
     }
 }
