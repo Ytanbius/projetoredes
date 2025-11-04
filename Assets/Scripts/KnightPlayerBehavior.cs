@@ -27,12 +27,11 @@ public class KnightPlayerBehavior : NetworkBehaviour
         groundCheck = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
-    private void Update()
-    {
-        Move();
-    }
     public override void FixedUpdateNetwork()
     {
+        if(!grounded)
+            jump = false;
+        Move();
         CheckGround();
         if (grounded && move.x == 0 && rb.linearVelocity.y <= 0)
             rb.linearVelocity *= drag;
@@ -43,9 +42,9 @@ public class KnightPlayerBehavior : NetworkBehaviour
         {
             rb.linearVelocity = new Vector2(Mathf.Round(move.x) * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
         }
-        if (move.y > 0 && grounded)
+        if (jump && grounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Round(move.y) * Runner.DeltaTime * jumpForce);
+            rb.AddForceY(Runner.DeltaTime * jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -64,8 +63,16 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         MoveInput(value.Get<Vector2>());
     }
+    public void OnJump(InputValue value)
+    {
+        JumpInput(value.isPressed);
+    }
     public void MoveInput(Vector2 moveDir)
     {
         move = moveDir;
+    }
+    public void JumpInput(bool trigger)
+    {
+        jump = trigger;
     }
 }

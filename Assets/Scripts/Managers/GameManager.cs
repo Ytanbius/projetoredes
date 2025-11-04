@@ -2,7 +2,6 @@ using UnityEditor.Analytics;
 using UnityEngine;
 using Fusion;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,10 +24,6 @@ public class GameManager : MonoBehaviour
         checkPointManager = instance.gameObject.GetComponent<CheckPointManager>();
         var _sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
         _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
-    }
-    private void Update()
-    {
-        Debug.Log(nickname);
     }
     public void StartSharedGame()
     {

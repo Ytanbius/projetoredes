@@ -13,8 +13,7 @@ public class ServerManager : NetworkBehaviour
     }
     public void SpawnPlayer(GameObject playerPrefab)
     {
-        players.Add(Runner.Spawn(playerPrefab, new Vector2(0, 1), Quaternion.identity));
-        players[players.Count - 1].name = "User: " + GameManager.instance.nickname;
+        Runner.Spawn(playerPrefab, new Vector2(0, 1), Quaternion.identity, this.Object.StateAuthority);
         GameManager.instance.HudChange(_telaNull);
     }
 }

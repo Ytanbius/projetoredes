@@ -178,8 +178,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   checkpoint: {fileID: 6378992047229516993, guid: 16db99b689f52e14a9a2ceac85e0238a, type: 3}
-  jumpForce: 550
-  moveSpeed: 250
+  jumpForce: 100
+  moveSpeed: 150
   drag: 0.9
   grounded: 0
   jump: 0
@@ -273,8 +273,8 @@ Transform:
   m_GameObject: {fileID: 8747908588884751087}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.048, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: -1.012, z: 0}
+  m_LocalScale: {x: 1, y: 0.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5163090000214241927}

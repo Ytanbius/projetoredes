@@ -2,6 +2,7 @@ using UnityEngine;
 using Fusion;
 using UnityEngine.InputSystem;
 using static Unity.Collections.Unicode;
+using Unity.VisualScripting;
 
 public class MagePlayerBehavior : NetworkBehaviour
 {
@@ -14,7 +15,6 @@ public class MagePlayerBehavior : NetworkBehaviour
     {
         _rb = this.GetComponent<Rigidbody2D>();
     }
-
     private void Update()
     {
         Move();
