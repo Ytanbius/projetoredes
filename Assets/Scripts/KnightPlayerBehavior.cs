@@ -13,6 +13,8 @@ public class KnightPlayerBehavior : NetworkBehaviour
 
     private Vector2 move;
 
+    public int player;
+
     public GameObject checkpoint;
 
     public float jumpForce;
@@ -24,12 +26,13 @@ public class KnightPlayerBehavior : NetworkBehaviour
     public bool jump = false;
     private void Start()
     {
+        player = this.Object.StateAuthority.PlayerId;
         groundCheck = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
     public override void FixedUpdateNetwork()
     {
-        if(!grounded)
+        if (!grounded)
             jump = false;
         Move();
         CheckGround();

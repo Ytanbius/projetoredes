@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6025949175044454721}
   - component: {fileID: -3477449767680924347}
   - component: {fileID: -308528923009718097}
-  - component: {fileID: -6749904222746896671}
   - component: {fileID: 4290878239773281017}
   - component: {fileID: -5913521105652531922}
   m_Layer: 0
@@ -107,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagePlayerBehavior
   move: {x: 0, y: 0}
   interact: 0
-  _moveSpeed: 1000
+  _moveSpeed: 5
 --- !u!114 &-3477449767680924347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,33 +144,6 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
---- !u!50 &-6749904222746896671
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6853183353357458029}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &4290878239773281017
 BoxCollider2D:
   m_ObjectHideFlags: 0

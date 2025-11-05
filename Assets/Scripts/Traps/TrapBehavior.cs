@@ -1,6 +1,5 @@
 using UnityEngine;
 using Fusion;
-using UnityEditor.SearchService;
 
 public class TrapBehavior : NetworkBehaviour
 {

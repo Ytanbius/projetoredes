@@ -1,28 +1,27 @@
 using UnityEngine;
 using Fusion;
 using UnityEngine.InputSystem;
-using static Unity.Collections.Unicode;
-using Unity.VisualScripting;
 
 public class MagePlayerBehavior : NetworkBehaviour
 {
     public Vector2 move;
     public bool interact;
-    private Rigidbody2D _rb;
+
+    public int player;
 
     public float _moveSpeed;
 
     private void Start()
     {
-        _rb = this.GetComponent<Rigidbody2D>();
+        player = this.Object.StateAuthority.PlayerId;
     }
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
         Move();
     }
     private void Move()
     {
-        _rb.linearVelocity = move * Runner.DeltaTime * _moveSpeed;
+        this.transform.Translate(move * _moveSpeed * Runner.DeltaTime);
     }
     public void OnMove(InputValue value)
     {
