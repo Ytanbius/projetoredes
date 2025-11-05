@@ -8,7 +8,6 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public ServerManager serverManager;
     public CheckPointManager checkPointManager;
     public HudManager hudManager;
     public NetworkRunner Runner;
@@ -19,6 +18,10 @@ public class GameManager : MonoBehaviour
     public string nickname;
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
         instance = this;
         hudManager = instance.gameObject.GetComponent<HudManager>();
         checkPointManager = instance.gameObject.GetComponent<CheckPointManager>();

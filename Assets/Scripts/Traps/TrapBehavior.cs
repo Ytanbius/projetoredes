@@ -1,19 +1,41 @@
 using UnityEngine;
 using Fusion;
+using UnityEditor.SearchService;
 
 public class TrapBehavior : NetworkBehaviour
 {
     public GameObject trapPrefab;
-    private MagePlayerBehavior playerBehavior;
-    private PlayerRef playerRef;
+    public GameObject UI;
+    public MagePlayerBehavior playerBehavior;
+    private NetworkObject playerObject;
 
-    private void OnTriggerStay2D(Collider2D other)
+    public int activationDistance;
+    private bool hasActivated;
+    private void Update()
     {
-        playerBehavior = other.GetComponent<MagePlayerBehavior>();
-        if(playerBehavior.Object.HasStateAuthority && playerBehavior)
+        if (playerObject == null)
+            playerObject = playerBehavior.GetComponent<NetworkObject>();
+        checkDistance();
+    }
+    private void checkDistance()
+    {
+        if (playerBehavior.Object.HasStateAuthority && playerBehavior)
         {
-            Instantiate(trapPrefab, this.transform.position, Quaternion.identity);
-            Debug.Log("sla man");
+            if(Mathf.Abs(playerObject.transform.position.x - this.transform.position.x) < activationDistance)
+            {
+                UI.SetActive(true);
+                if(playerBehavior.interact && !hasActivated)
+                {
+                    onActivate();
+                }
+            }
+            else
+                UI.SetActive(false);
         }
+    }
+    public void onActivate()
+    {
+        Runner.Spawn(trapPrefab, this.transform.position, Quaternion.identity);
+        hasActivated = true;
     }
 }

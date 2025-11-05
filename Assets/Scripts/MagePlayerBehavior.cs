@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 public class MagePlayerBehavior : NetworkBehaviour
 {
     public Vector2 move;
+    public bool interact;
     private Rigidbody2D _rb;
 
     public float _moveSpeed;
@@ -26,6 +27,10 @@ public class MagePlayerBehavior : NetworkBehaviour
     public void OnMove(InputValue value)
     {
         MoveInput(value.Get<Vector2>());
+    }
+    public void OnInteract(InputValue value)
+    {
+        interact = value.isPressed;
     }
     public void MoveInput(Vector2 moveDir)
     {
