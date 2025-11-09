@@ -18,7 +18,7 @@ public class EnemyBehavior : NetworkBehaviour
         if(playerBehavior && !dead && other.GetComponent<BoxCollider2D>())
         {
             OnDeath();
-            Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), other.GetComponentInParent<CapsuleCollider2D>(), true);
+            Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), playerBehavior.gameObject.GetComponent<BoxCollider2D>(), true);
         }
     }
     private void OnDeath()

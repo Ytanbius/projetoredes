@@ -1,8 +1,6 @@
-using UnityEditor.Analytics;
 using UnityEngine;
 using Fusion;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -11,13 +9,17 @@ public class GameManager : MonoBehaviour
     public CheckPointManager checkPointManager;
     public HudManager hudManager;
     public NetworkRunner Runner;
+    public ServerManager serverManager;
+    public InputManager input;
     NetworkSceneInfo _info = new NetworkSceneInfo();
 
-    public GameObject serverPrefab;
+    public GameObject playerPrefab;
 
     public string nickname;
     private void Awake()
     {
+        //SceneManager.LoadSceneAsync("Tutorial", LoadSceneMode.Single);
+        DontDestroyOnLoad(this.gameObject);
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -25,19 +27,24 @@ public class GameManager : MonoBehaviour
         instance = this;
         hudManager = instance.gameObject.GetComponent<HudManager>();
         checkPointManager = instance.gameObject.GetComponent<CheckPointManager>();
-        var _sceneRef = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
-        _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
+        input = instance.gameObject.GetComponent<InputManager>();
     }
-    public void StartSharedGame()
+    public void StartSharedGame(GameObject prefab)
     {
+        playerPrefab = prefab;
+        var _sceneRef = SceneRef.FromIndex(1);
+        _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
         Runner.StartGame(new StartGameArgs()
         {
             Scene = _info,
             GameMode = GameMode.Shared
         });
     }
-    public void StartSPGame()
+    public void StartSPGame(GameObject prefab)
     {
+        playerPrefab = prefab;
+        var _sceneRef = SceneRef.FromIndex(1);
+        _info.AddSceneRef(_sceneRef, LoadSceneMode.Single);
         Runner.StartGame(new StartGameArgs()
         {
             Scene = _info,

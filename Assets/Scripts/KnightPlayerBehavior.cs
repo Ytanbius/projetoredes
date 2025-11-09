@@ -6,12 +6,16 @@ using System.Collections;
 
 public class KnightPlayerBehavior : NetworkBehaviour
 {
+    public Animator animator;
     public BoxCollider2D groundCheck;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
+    private Camera cam;
+    public InputManager input;
 
     public LayerMask groundMask;
 
-    private Vector2 move;
+    [SerializeField] Vector2 move;
 
     public int player;
 
@@ -21,19 +25,38 @@ public class KnightPlayerBehavior : NetworkBehaviour
     public float moveSpeed;
     [Range(0f, 1f)]
     public float drag;
+    [Range(0f, 1f)]
+    public float airDrag;
 
     public bool grounded;
     public bool jump = false;
+    private bool jumped = false;
+
+    public override void Spawned()
+    {
+        if (HasStateAuthority)
+        {
+            cam = Camera.main;
+            cam.GetComponent<CameraMovement>().target = this.transform.gameObject;
+            checkpoint = ServerManager.instance.firstCheckPoint;
+        }
+    }
     private void Start()
     {
+
+        input = this.GetComponent<InputManager>();
+        animator = this.GetComponent<Animator>();
+        sprite = this.GetComponent<SpriteRenderer>();
         player = this.Object.StateAuthority.PlayerId;
         groundCheck = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+        GetInputs();
+    }
     public override void FixedUpdateNetwork()
     {
-        if (!grounded)
-            jump = false;
         Move();
         CheckGround();
         if (grounded && move.x == 0 && rb.linearVelocity.y <= 0)
@@ -43,11 +66,37 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         if (Mathf.Abs(move.x) > 0)
         {
-            rb.linearVelocity = new Vector2(Mathf.Round(move.x) * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+            if (grounded)
+                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+            else
+                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * airDrag * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+            if (move.x > 0)
+            {
+                sprite.flipX = false;
+                animator.SetBool("IsWalking", true);
+            }
+            else
+            {
+                sprite.flipX = true;
+                animator.SetBool("IsWalking", true);
+            }
         }
-        if (jump && grounded)
+        else
+            animator.SetBool("IsWalking", false);
+        if (!grounded && jumped)
+        {
+            input.jump = false;
+        }
+        if (jumped && grounded && !jump)
+        {
+            animator.SetBool("IsJumping", false);
+            jumped = false;
+        }
+        if (jump && grounded && !jumped)
         {
             rb.AddForceY(Runner.DeltaTime * jumpForce, ForceMode2D.Impulse);
+            animator.SetBool("IsJumping", true);
+            jumped = true;
         }
     }
 
@@ -60,22 +109,9 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         GameManager.instance.LoadLastCheckPoint(this.gameObject, checkpoint);
     }
-
-    //Inputs
-    public void OnMove(InputValue value)
+    public void GetInputs()
     {
-        MoveInput(value.Get<Vector2>());
-    }
-    public void OnJump(InputValue value)
-    {
-        JumpInput(value.isPressed);
-    }
-    public void MoveInput(Vector2 moveDir)
-    {
-        move = moveDir;
-    }
-    public void JumpInput(bool trigger)
-    {
-        jump = trigger;
+        move = input.move;
+        jump = input.jump;
     }
 }
