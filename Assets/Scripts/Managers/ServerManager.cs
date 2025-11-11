@@ -5,6 +5,7 @@ public class ServerManager : NetworkBehaviour
 {
     public static ServerManager instance;
     public GameObject _telaNull;
+    public GameObject mageSpawn;
     public GameObject firstCheckPoint;
     public List<NetworkObject> traps;
 
