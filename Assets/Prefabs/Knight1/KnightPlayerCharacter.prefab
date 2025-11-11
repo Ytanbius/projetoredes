@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2942210657156443695}
   - component: {fileID: 5307277914594919132}
   - component: {fileID: 7129021582751133119}
+  - component: {fileID: -710899043382034516}
   m_Layer: 6
   m_Name: KnightPlayerCharacter
   m_TagString: Untagged
@@ -115,6 +116,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7690366365947246251}
   - {fileID: -7645598918293312922}
+  - {fileID: -710899043382034516}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6774747094250709250
 MonoBehaviour:
@@ -233,7 +235,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -254,7 +256,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4377835, y: 0.5}
+    pivot: {x: 0.43, y: 0.5}
     oldSize: {x: 1.8166667, y: 2.0428572}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -300,6 +302,24 @@ MonoBehaviour:
   interact: 0
   jump: 0
   move: {x: 0, y: 0}
+--- !u!114 &-710899043382034516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898932470392062066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 5307277914594919132}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 00000000e3096325d0ba4612a3c6d6749075f343e0baf45ed309d169c8d0bfe50aa27e47
+  TriggerHashes: 00000000
+  TotalWords: 1
 --- !u!1 &8747908588884751087
 GameObject:
   m_ObjectHideFlags: 0

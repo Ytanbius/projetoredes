@@ -24,7 +24,7 @@ public class MagePlayerBehavior : NetworkBehaviour
     }
     private void Start()
     {
-        input = GetComponent<InputManager>();
+        input = this.GetComponent<InputManager>();
         player = this.Object.StateAuthority.PlayerId;
     }
     private void Update()

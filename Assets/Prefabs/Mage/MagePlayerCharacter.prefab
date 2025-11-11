@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 4290878239773281017}
   - component: {fileID: -5913521105652531922}
   - component: {fileID: 7622295606237630843}
-  - component: {fileID: 5242755762396009125}
   - component: {fileID: 2443106315608647074}
+  - component: {fileID: 5874053963720657794}
+  - component: {fileID: -9074429585149574339}
   m_Layer: 0
   m_Name: MagePlayerCharacter
   m_TagString: Untagged
@@ -110,7 +111,7 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   interact: 0
   player: 0
-  _moveSpeed: 5
+  _moveSpeed: 10
 --- !u!114 &-3477449767680924347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +131,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 6025949175044454721}
   - {fileID: -308528923009718097}
+  - {fileID: -9074429585149574339}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &-308528923009718097
 MonoBehaviour:
@@ -164,7 +166,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -322,21 +324,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5242755762396009125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6853183353357458029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5410651170a6f94fa2d26ca4b9d95be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact: 0
-  jump: 0
-  move: {x: 0, y: 0}
 --- !u!50 &2443106315608647074
 Rigidbody2D:
   serializedVersion: 5
@@ -364,3 +351,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &5874053963720657794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853183353357458029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5410651170a6f94fa2d26ca4b9d95be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact: 0
+  jump: 0
+  move: {x: 0, y: 0}
+--- !u!114 &-9074429585149574339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853183353357458029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 7622295606237630843}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 00000000ec4d0ae3f6dc3009ca87a181d0169b6b
+  TriggerHashes: 0000000069b821af
+  TotalWords: 1

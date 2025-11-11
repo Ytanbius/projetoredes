@@ -1,13 +1,17 @@
 using UnityEngine;
 using Fusion;
+using System.Collections;
+using NUnit.Framework.Constraints;
 
 public class TrapBehavior : NetworkBehaviour
 {
     public GameObject trapPrefab;
+    public NetworkObject trapObject;
     public GameObject UI;
     public MagePlayerBehavior playerBehavior;
     private Animator animator;
     private NetworkObject playerObject;
+    public float destroyCD = 5;
 
     public int activationDistance;
     private bool hasActivated;
@@ -42,5 +46,12 @@ public class TrapBehavior : NetworkBehaviour
         Runner.Spawn(trapPrefab, this.transform.position, Quaternion.identity);
         Destroy(UI);
         hasActivated = true;
+        //StartCoroutine(DestroyTrap());
     }
+
+    //private IEnumerator DestroyTrap()
+    //{
+    //    yield return new WaitForSeconds(destroyCD);
+    //    Destroy(trapObject);
+    //}
 }
