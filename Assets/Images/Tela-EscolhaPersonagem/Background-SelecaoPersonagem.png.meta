@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d66f8c2128ca4c48932b61131012363
+guid: 779df8d2d64bf2b4fbdc615b58be3e12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3433766030913792732
-    second: BG- cenario_0
+      213: -3273856772455069972
+    second: Background-SelecaoPersonagem_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BG- cenario_0
+      name: Background-SelecaoPersonagem_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 425949ddcffc850d0800000000000000
-      internalID: -3433766030913792732
+      spriteID: ce60f407c9ce092d0800000000000000
+      internalID: -3273856772455069972
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BG- cenario_0: -3433766030913792732
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
