@@ -17,12 +17,13 @@ public class KnightPlayerBehavior : NetworkBehaviour
 
     [SerializeField] Vector2 move;
 
-    public int player;
+    public PlayerRef player;
 
     public GameObject checkpoint;
 
     public float jumpForce;
     public float moveSpeed;
+    public float gravity = -9.8f;
     [Range(0f, 1f)]
     public float drag;
     [Range(0f, 1f)]
@@ -43,11 +44,10 @@ public class KnightPlayerBehavior : NetworkBehaviour
     }
     private void Start()
     {
-
         input = this.GetComponent<InputManager>();
         animator = this.GetComponent<Animator>();
         sprite = this.GetComponent<SpriteRenderer>();
-        player = this.Object.StateAuthority.PlayerId;
+        player = this.Object.StateAuthority;
         groundCheck = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -94,7 +94,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
         }
         if (jump && grounded && !jumped)
         {
-            rb.AddForceY(Runner.DeltaTime * jumpForce, ForceMode2D.Impulse);
+            transform.Translate(Vector3.up * Runner.DeltaTime * jumpForce * gravity);
             animator.SetBool("IsJumping", true);
             jumped = true;
         }
