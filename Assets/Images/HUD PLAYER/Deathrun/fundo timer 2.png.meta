@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d66f8c2128ca4c48932b61131012363
+guid: 7bdd9a3b8228bf7459a77098ac6cc3f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3433766030913792732
-    second: BG- cenario_0
+      213: -5926771508750885326
+    second: fundo timer 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BG- cenario_0
+      name: fundo timer 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 42
+        y: 27
+        width: 1448
+        height: 964
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 425949ddcffc850d0800000000000000
-      internalID: -3433766030913792732
+      spriteID: 23e5ff3d6b0efbda0800000000000000
+      internalID: -5926771508750885326
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BG- cenario_0: -3433766030913792732
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
