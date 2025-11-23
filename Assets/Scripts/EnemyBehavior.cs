@@ -14,11 +14,14 @@ public class EnemyBehavior : NetworkBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        KnightPlayerBehavior playerBehavior = other.GetComponentInParent<KnightPlayerBehavior>();
-        if(playerBehavior && !dead && other.GetComponent<BoxCollider2D>())
+        if(other.gameObject.name == "CheckGround")
         {
-            OnDeath();
-            Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), playerBehavior.gameObject.GetComponent<BoxCollider2D>(), true);
+            KnightPlayerBehavior playerBehavior = other.GetComponentInParent<KnightPlayerBehavior>();
+            if (playerBehavior && !dead && other.GetComponent<BoxCollider2D>())
+            {
+                OnDeath();
+                Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), playerBehavior.gameObject.GetComponent<BoxCollider2D>(), true);
+            }
         }
     }
     private void OnDeath()

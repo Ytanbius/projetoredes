@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5307277914594919132}
   - component: {fileID: 7129021582751133119}
   - component: {fileID: -710899043382034516}
+  - component: {fileID: 9103641915068754018}
   m_Layer: 6
   m_Name: KnightPlayerCharacter
   m_TagString: Untagged
@@ -116,7 +117,6 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7690366365947246251}
   - {fileID: -7645598918293312922}
-  - {fileID: 7129021582751133119}
   - {fileID: -710899043382034516}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6774747094250709250
@@ -185,10 +185,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   move: {x: 0, y: 0}
-  player: 0
   checkpoint: {fileID: 0}
-  jumpForce: 350
-  moveSpeed: 250
+  jumpForce: 10
+  moveSpeed: 10
+  gravity: -9.8
   drag: 0.9
   airDrag: 0.5
   grounded: 0
@@ -321,6 +321,20 @@ MonoBehaviour:
   StateHashes: 00000000e3096325d0ba4612a3c6d6749075f343e0baf45ed309d169c8d0bfe50aa27e47
   TriggerHashes: 00000000
   TotalWords: 1
+--- !u!114 &9103641915068754018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2898932470392062066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Guid:
+    RawGuidValue: 0db574590a05aac42a07d2c25052ca3e
 --- !u!1 &8747908588884751087
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +362,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.012, z: 0}
-  m_LocalScale: {x: 1, y: 0.03, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5163090000214241927}

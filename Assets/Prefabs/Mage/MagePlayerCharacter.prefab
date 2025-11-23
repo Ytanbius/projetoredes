@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2443106315608647074}
   - component: {fileID: 5874053963720657794}
   - component: {fileID: -9074429585149574339}
+  - component: {fileID: 4761709048585306514}
   m_Layer: 0
   m_Name: MagePlayerCharacter
   m_TagString: Untagged
@@ -108,10 +109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa7182f0fc6ae84598b0a9f5f65b024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagePlayerBehavior
+  nearestTrap: {fileID: 0}
+  escolhaUI: {fileID: 0}
+  hud: {fileID: 3090048919180538521, guid: e04a263daf24e2544988db9456ab06d9, type: 3}
   move: {x: 0, y: 0}
   interact: 0
   player: 0
   _moveSpeed: 10
+  canMove: 1
+  canChoose: 0
+  chooseOption: 
+  traps:
+  - {fileID: 7722866451304848198, guid: df7ee62bdc3beba49ac5c38ed6a85b0c, type: 3}
 --- !u!114 &-3477449767680924347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +140,6 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 6025949175044454721}
   - {fileID: -308528923009718097}
-  - {fileID: 5874053963720657794}
   - {fileID: -9074429585149574339}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &-308528923009718097
@@ -385,3 +393,17 @@ MonoBehaviour:
   StateHashes: 00000000ec4d0ae3f6dc3009ca87a181d0169b6b
   TriggerHashes: 0000000069b821af
   TotalWords: 1
+--- !u!114 &4761709048585306514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853183353357458029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1541381998, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Guid:
+    RawGuidValue: 5111e70c5a8d8974fae95d82535343a4

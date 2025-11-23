@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Fusion;
 
-public class InputManager : NetworkBehaviour
+public class InputManager : MonoBehaviour
 {
     public bool interact;
     public bool jump;

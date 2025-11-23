@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 527d035585f998842afe306e6b686bc1
+guid: 631535fb0a159664c8485dc3cbac7bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5893842134612807267
-    second: WhatsApp Image 2025-11-19 at 15.19.19_0
+      213: -5445716456468999506
+    second: criatura_inimigo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhatsApp Image 2025-11-19 at 15.19.19_0
+      name: criatura_inimigo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1024
-        height: 1024
+        height: 1536
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d917c243ecdd43ea0800000000000000
-      internalID: -5893842134612807267
+      spriteID: ea29aa84cbdec64b0800000000000000
+      internalID: -5445716456468999506
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      WhatsApp Image 2025-11-19 at 15.19.19_0: -5893842134612807267
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

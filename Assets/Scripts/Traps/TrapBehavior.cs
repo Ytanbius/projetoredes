@@ -9,12 +9,14 @@ public class TrapBehavior : NetworkBehaviour
     public NetworkObject trapObject;
     public GameObject UI;
     public MagePlayerBehavior playerBehavior;
+    public CanvasGroup escolhaUI;
     private Animator animator;
     private NetworkObject playerObject;
     public float destroyCD = 5;
 
     public int activationDistance;
-    private bool hasActivated;
+    public bool hasActivated;
+    public bool canActivate;
     private void Update()
     {
         if (playerObject == null)
@@ -30,21 +32,22 @@ public class TrapBehavior : NetworkBehaviour
         {
             if(Mathf.Abs(playerObject.transform.position.x - this.transform.position.x) < activationDistance)
             {
+                playerBehavior.nearestTrap = this;
                 UI.SetActive(true);
-                if(playerBehavior.interact && !hasActivated)
-                {
-                    animator.SetTrigger("ActivateTrap");
-                    onActivate();
-                }
             }
             else
+            {
                 UI.SetActive(false);
+            }
         }
     }
     public void onActivate()
     {
+        animator.SetTrigger("ActivateTrap");
         Runner.Spawn(trapPrefab, this.transform.position, Quaternion.identity);
         Destroy(UI);
+        escolhaUI.alpha = 0;
+        escolhaUI.blocksRaycasts = false;
         hasActivated = true;
         //StartCoroutine(DestroyTrap());
     }

@@ -67,17 +67,17 @@ public class KnightPlayerBehavior : NetworkBehaviour
         if (Mathf.Abs(move.x) > 0)
         {
             if (grounded)
-                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * moveSpeed, rb.linearVelocity.y);
             else
-                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * airDrag * Runner.DeltaTime * moveSpeed, rb.linearVelocity.y);
+                rb.linearVelocity = new Vector2(Mathf.Round(move.x) * airDrag * moveSpeed, rb.linearVelocity.y);
             if (move.x > 0)
             {
-                sprite.flipX = false;
+                gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
                 animator.SetBool("IsWalking", true);
             }
             else
             {
-                sprite.flipX = true;
+                gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
                 animator.SetBool("IsWalking", true);
             }
         }
@@ -94,7 +94,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
         }
         if (jump && grounded && !jumped)
         {
-            transform.Translate(Vector3.up * Runner.DeltaTime * jumpForce * gravity);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             animator.SetBool("IsJumping", true);
             jumped = true;
         }
