@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      criatura_inimigo_0: -5445716456468999506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

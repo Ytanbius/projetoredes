@@ -1,15 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using Fusion;
-using UnityEngine.InputSystem;
-using System.Collections;
 
 public class KnightPlayerBehavior : NetworkBehaviour
 {
     public Animator animator;
     public BoxCollider2D groundCheck;
     private Rigidbody2D rb;
-    private SpriteRenderer sprite;
     private Camera cam;
     public InputManager input;
 
@@ -44,12 +40,14 @@ public class KnightPlayerBehavior : NetworkBehaviour
     }
     private void Start()
     {
-        input = this.GetComponent<InputManager>();
-        animator = this.GetComponent<Animator>();
-        sprite = this.GetComponent<SpriteRenderer>();
-        player = this.Object.StateAuthority;
-        groundCheck = GetComponentInChildren<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        if (HasStateAuthority)
+        {
+            input = this.gameObject.GetComponent<InputManager>();
+            animator = this.GetComponent<Animator>();
+            player = this.Object.StateAuthority;
+            groundCheck = GetComponentInChildren<BoxCollider2D>();
+            rb = GetComponent<Rigidbody2D>();
+        }
     }
     private void Update()
     {
@@ -59,8 +57,11 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         Move();
         CheckGround();
-        if (grounded && move.x == 0 && rb.linearVelocity.y <= 0)
+        Debug.Log(rb.linearVelocity.x);
+        if (grounded && move.x == 0)
+        {
             rb.linearVelocity *= drag;
+        }
     }
     private void Move()
     {
