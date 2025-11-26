@@ -10,6 +10,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
     public InputManager input;
 
     public LayerMask groundMask;
+    public Physics2D playerPhysics;
 
     [SerializeField] Vector2 move;
 
