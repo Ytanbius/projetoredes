@@ -116,6 +116,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7690366365947246251}
   - {fileID: -7645598918293312922}
+  - {fileID: 7129021582751133119}
   - {fileID: 9209053299445734594}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6774747094250709250
@@ -185,8 +186,8 @@ MonoBehaviour:
     m_Bits: 128
   move: {x: 0, y: 0}
   checkpoint: {fileID: 0}
-  jumpForce: 350
-  moveSpeed: 250
+  jumpForce: 10
+  moveSpeed: 10
   gravity: -9.8
   drag: 0.9
   airDrag: 0.5

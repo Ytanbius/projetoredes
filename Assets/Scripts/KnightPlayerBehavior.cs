@@ -32,8 +32,9 @@ public class KnightPlayerBehavior : NetworkBehaviour
 
     public override void Spawned()
     {
-        if (HasStateAuthority)
+        if(HasInputAuthority)
         {
+            ServerManager.instance.knightsPlayers.Add(this.GetComponent<NetworkObject>());
             cam = Camera.main;
             cam.GetComponent<CameraMovement>().target = this.transform.gameObject;
             checkpoint = ServerManager.instance.firstCheckPoint;
@@ -41,21 +42,18 @@ public class KnightPlayerBehavior : NetworkBehaviour
     }
     private void Start()
     {
-        if (HasStateAuthority)
-        {
-            input = this.gameObject.GetComponent<InputManager>();
-            animator = this.GetComponent<Animator>();
-            player = this.Object.StateAuthority;
-            groundCheck = GetComponentInChildren<BoxCollider2D>();
-            rb = GetComponent<Rigidbody2D>();
-        }
+        input = this.gameObject.GetComponent<InputManager>();
+        player = this.Object.StateAuthority;
+        animator = this.GetComponent<Animator>();
+        groundCheck = GetComponentInChildren<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        GetInputs();
     }
     public override void FixedUpdateNetwork()
     {
+        GetInputs();
         Move();
         CheckGround();
         Debug.Log(rb.linearVelocity.x);

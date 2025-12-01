@@ -1,4 +1,5 @@
 using Fusion;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -11,6 +12,7 @@ public class MagePlayerBehavior : NetworkBehaviour
     public TrapBehavior nearestTrap;
     public CanvasGroup escolhaUI;
     public GameObject hud;
+    public Rigidbody2D _rb;
 
     public Vector2 move;
     public bool interact;
@@ -32,13 +34,16 @@ public class MagePlayerBehavior : NetworkBehaviour
             cam.GetComponent<CameraMovement>().target = transform.gameObject;
             hud = Instantiate(hud, Vector2.zero, Quaternion.identity);
             escolhaUI = hud.GetComponentInChildren<CanvasGroup>(name == "Escolha");
-            input = this.gameObject.GetComponent<InputManager>();
-            player = this.Object.StateAuthority;
         }
+    }
+    private void Start()
+    {
+        input = this.gameObject.GetComponent<InputManager>();
+        player = this.Object.StateAuthority;
+        _rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        GetInput();
         InteractTrap();
         if(canChoose)
         {
@@ -47,8 +52,8 @@ public class MagePlayerBehavior : NetworkBehaviour
     }
     public override void FixedUpdateNetwork()
     {
-        //if (canMove)
-            Move();
+        GetInput();
+        Move();
     }
     public void InteractTrap()
     {
@@ -69,7 +74,7 @@ public class MagePlayerBehavior : NetworkBehaviour
     }
     private void Move()
     {
-        this.transform.Translate(move * _moveSpeed);
+        _rb.MovePosition((Vector2)transform.position + input.move * _moveSpeed);
     }
     private void GetInput()
     {

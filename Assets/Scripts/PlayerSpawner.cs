@@ -28,6 +28,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
                 Debug.Log("mage");
                 ServerManager.instance.MagePlayerSetup(player);
             }
+            player = null;
         }
        
     }
