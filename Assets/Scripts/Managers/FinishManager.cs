@@ -13,13 +13,8 @@ public class FinishManager : NetworkBehaviour
         playerBehavior = other.gameObject.GetComponent<KnightPlayerBehavior>();
         if (playerBehavior != null)
         {
-            Debug.Log("2");
             player = other.gameObject;
-            Debug.Log("3");
-            playerBehavior.OnFinish();
-            Debug.Log("4");
             OnFinish();
-            Debug.Log("5");
         }
     }
     public void onButtonPress()
@@ -30,5 +25,6 @@ public class FinishManager : NetworkBehaviour
     {
         timer.SetActive(false);
         canvas = Instantiate(canvas, Vector2.zero, Quaternion.identity);
+        playerBehavior.OnFinish();
     }
 }
