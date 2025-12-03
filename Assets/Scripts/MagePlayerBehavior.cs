@@ -1,5 +1,4 @@
 using Fusion;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -12,6 +11,7 @@ public class MagePlayerBehavior : NetworkBehaviour
     public TrapBehavior nearestTrap;
     public CanvasGroup escolhaUI;
     public GameObject hud;
+    public GameObject hudTimer;
     public Rigidbody2D _rb;
 
     public Vector2 move;
@@ -33,14 +33,13 @@ public class MagePlayerBehavior : NetworkBehaviour
             cam = Camera.main;
             cam.GetComponent<CameraMovement>().target = transform.gameObject;
             hud = Instantiate(hud, Vector2.zero, Quaternion.identity);
+            hudTimer = Instantiate(hudTimer, Vector2.zero, Quaternion.identity);
             escolhaUI = hud.GetComponentInChildren<CanvasGroup>(name == "Escolha");
+            if(GetComponent<InputManager>().HasStateAuthority)
+                input = GetComponent<InputManager>();
+            player = this.Object.StateAuthority;
+            _rb = GetComponent<Rigidbody2D>();
         }
-    }
-    private void Start()
-    {
-        input = this.gameObject.GetComponent<InputManager>();
-        player = this.Object.StateAuthority;
-        _rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
@@ -69,12 +68,16 @@ public class MagePlayerBehavior : NetworkBehaviour
             else if (!nearestTrap.hasActivated && nearestTrap.canActivate)
             {
                 nearestTrap.onActivate();
+                nearestTrap.hasActivated = true;
+                interact = false;
             }
+            interact = false;
         }
     }
     private void Move()
     {
-        _rb.MovePosition((Vector2)transform.position + input.move * _moveSpeed);
+        if(input.move != Vector2.zero)
+            _rb.MovePosition((Vector2)transform.position + (input.move * _moveSpeed * Runner.DeltaTime));
     }
     private void GetInput()
     {

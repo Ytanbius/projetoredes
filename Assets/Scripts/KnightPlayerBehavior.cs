@@ -17,6 +17,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
     public PlayerRef player;
 
     public GameObject checkpoint;
+    public GameObject hud;
 
     public float jumpForce;
     public float moveSpeed;
@@ -34,7 +35,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         if(HasInputAuthority)
         {
-            ServerManager.instance.knightsPlayers.Add(this.GetComponent<NetworkObject>());
+            hud = Instantiate(hud, Vector2.zero, Quaternion.identity);
             cam = Camera.main;
             cam.GetComponent<CameraMovement>().target = this.transform.gameObject;
             checkpoint = ServerManager.instance.firstCheckPoint;
@@ -47,9 +48,6 @@ public class KnightPlayerBehavior : NetworkBehaviour
         animator = this.GetComponent<Animator>();
         groundCheck = GetComponentInChildren<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-    }
-    private void Update()
-    {
     }
     public override void FixedUpdateNetwork()
     {
@@ -72,12 +70,12 @@ public class KnightPlayerBehavior : NetworkBehaviour
                 rb.linearVelocity = new Vector2(Mathf.Round(move.x) * airDrag * moveSpeed, rb.linearVelocity.y);
             if (move.x > 0)
             {
-                gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 animator.SetBool("IsWalking", true);
             }
             else
             {
-                gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 animator.SetBool("IsWalking", true);
             }
         }
@@ -99,7 +97,6 @@ public class KnightPlayerBehavior : NetworkBehaviour
             jumped = true;
         }
     }
-
     void CheckGround()
     {
         grounded = Runner.GetPhysicsScene2D().OverlapArea(groundCheck.bounds.min, groundCheck.bounds.max, groundMask) != null;

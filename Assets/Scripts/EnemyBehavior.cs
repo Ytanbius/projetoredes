@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class EnemyBehavior : NetworkBehaviour
 {
-    public int deathCD;
+    public int vanishCD;
+    public float speed;
     private bool dead = false;
     private Rigidbody2D rb;
+    public Animator animator;
 
+    public override void Spawned()
+    {
+        StartCoroutine(TimeToDestroy());
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+    public override void FixedUpdateNetwork()
+    {
+            rb.MovePosition(transform.position + (transform.right * Runner.DeltaTime * speed));
     }
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -26,16 +36,16 @@ public class EnemyBehavior : NetworkBehaviour
     }
     private void OnDeath()
     {
-        StartCoroutine(DeathCD());
-    }
-
-    private IEnumerator DeathCD()
-    {
+        StopAllCoroutines();
         dead = true;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb.freezeRotation = true;
-        this.transform.localScale /= new Vector2(1, 2);
-        yield return new WaitForSeconds(deathCD);
-        Destroy(gameObject);
+        animator.SetBool("dead", true);
+    }
+
+    private IEnumerator TimeToDestroy()
+    {
+        yield return new WaitForSeconds(vanishCD);
+        Destroy(this.gameObject);
     }
 }

@@ -111,15 +111,17 @@ MonoBehaviour:
   nearestTrap: {fileID: 0}
   escolhaUI: {fileID: 0}
   hud: {fileID: 3090048919180538521, guid: e04a263daf24e2544988db9456ab06d9, type: 3}
+  hudTimer: {fileID: 6516436418343995560, guid: 13ce74c72a036eb47ac0795776966c47, type: 3}
   _rb: {fileID: 0}
   move: {x: 0, y: 0}
   interact: 0
-  _moveSpeed: 10
+  _moveSpeed: 20
   canMove: 1
   canChoose: 0
   chooseOption: 
   traps:
   - {fileID: 7722866451304848198, guid: df7ee62bdc3beba49ac5c38ed6a85b0c, type: 3}
+  - {fileID: 3777950655432921304, guid: 4121449855ce38a40a15adfafccee9a1, type: 3}
 --- !u!114 &-3477449767680924347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,10 +174,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 119
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

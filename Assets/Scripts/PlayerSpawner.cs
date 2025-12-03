@@ -26,8 +26,11 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             if (player.GetComponent<MagePlayerBehavior>())
             {
                 Debug.Log("mage");
+                ServerManager.instance.magePlayer = player;
                 ServerManager.instance.MagePlayerSetup(player);
             }
+            else
+                ServerManager.instance.knightsPlayers.Add(player);
             player = null;
         }
        

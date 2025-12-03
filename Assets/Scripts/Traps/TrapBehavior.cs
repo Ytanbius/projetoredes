@@ -43,12 +43,13 @@ public class TrapBehavior : NetworkBehaviour
     }
     public void onActivate()
     {
+        hasActivated = true;
         animator.SetTrigger("ActivateTrap");
         Runner.Spawn(trapPrefab, this.transform.position, Quaternion.identity);
         Destroy(UI);
         escolhaUI.alpha = 0;
         escolhaUI.blocksRaycasts = false;
-        hasActivated = true;
+        Destroy(this.gameObject);
         //StartCoroutine(DestroyTrap());
     }
 
