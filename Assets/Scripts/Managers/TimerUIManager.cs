@@ -14,7 +14,5 @@ public class TimerUIManager : NetworkBehaviour
     }
     public void Update()
     {
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        timerText.text = time.Minutes.ToString() + " : " + time.Seconds.ToString();
     }
 }

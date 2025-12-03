@@ -17,10 +17,10 @@ public class KnightPlayerBehavior : NetworkBehaviour
     public PlayerRef player;
 
     public GameObject checkpoint;
-    public GameObject hud;
 
     public float jumpForce;
     public float moveSpeed;
+    public int points;
     public float gravity = -9.8f;
     [Range(0f, 1f)]
     public float drag;
@@ -35,7 +35,6 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         if(HasInputAuthority)
         {
-            hud = Instantiate(hud, Vector2.zero, Quaternion.identity);
             cam = Camera.main;
             cam.GetComponent<CameraMovement>().target = this.transform.gameObject;
             checkpoint = ServerManager.instance.firstCheckPoint;
@@ -110,5 +109,9 @@ public class KnightPlayerBehavior : NetworkBehaviour
     {
         move = input.move;
         jump = input.jump;
+    }
+    public void OnFinish()
+    {
+        Destroy(gameObject);
     }
 }

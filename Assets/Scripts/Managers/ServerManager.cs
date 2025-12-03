@@ -17,7 +17,8 @@ public class ServerManager : NetworkBehaviour /*IPlayerJoined*/
 
     [Header("Timer")]
     public bool timerActive;
-    [Networked] public float currentTime { get; set; }
+    public TextMeshProUGUI timerText;
+    [Networked, OnChangedRender(nameof(ChangeTimer))] public float currentTime { get; set; }
     public float _startMinutes = 5;
     [Networked] bool _startTimer { get; set; } = true;
 
@@ -28,19 +29,20 @@ public class ServerManager : NetworkBehaviour /*IPlayerJoined*/
     }
     public override void FixedUpdateNetwork()
     {
+        if (_startTimer)
+        {
+            currentTime = _startMinutes * 60;
+            _startTimer = false;
+        }
         if (timerActive)
         {
-            if (_startTimer)
-            {
-                currentTime = _startMinutes * 60;
-                _startTimer = false;
-            }
             currentTime -= Runner.DeltaTime;
-            for (int i = 0; i < timerHuds.Count; i++)
-            {
-                timerHuds[i].currentTime = currentTime;
-            }
         }
+    }
+    public void ChangeTimer()
+    {
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+        timerText.text = time.Minutes.ToString() + " : " + time.Seconds.ToString();
     }
 
     //public void PlayerJoined(PlayerRef playerRef)
