@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      botao-pontuacao_0: 6464769813453354233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
