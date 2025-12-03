@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
     public void HudChange(GameObject tela)
     {
-        hudManager.ChangeCanvas(tela);
+         hudManager.ChangeCanvas(tela);
     }
     public void LoadLastCheckPoint(GameObject player, GameObject checkpoint)
     {
