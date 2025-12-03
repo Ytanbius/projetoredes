@@ -20,7 +20,7 @@ public class EnemyBehavior : NetworkBehaviour
     }
     public override void FixedUpdateNetwork()
     {
-            rb.MovePosition(transform.position + (transform.right * Runner.DeltaTime * speed));
+            rb.linearVelocity = new Vector2(transform.right.x * Runner.DeltaTime * speed, rb.linearVelocityY);
     }
     private void OnTriggerStay2D(Collider2D other)
     {

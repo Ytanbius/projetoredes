@@ -10,7 +10,6 @@ public class ServerManager : NetworkBehaviour /*IPlayerJoined*/
     public GameObject mageSpawn;
     public GameObject firstCheckPoint;
     public List<NetworkObject> traps;
-    [Networked, Capacity(3)] public NetworkLinkedList<TimerUIManager> timerHuds => default;
 
     public List<NetworkObject> knightsPlayers;
     public NetworkObject magePlayer;

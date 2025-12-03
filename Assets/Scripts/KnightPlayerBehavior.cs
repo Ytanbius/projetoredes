@@ -53,7 +53,6 @@ public class KnightPlayerBehavior : NetworkBehaviour
         GetInputs();
         Move();
         CheckGround();
-        Debug.Log(rb.linearVelocity.x);
         if (grounded && move.x == 0)
         {
             rb.linearVelocity *= drag;

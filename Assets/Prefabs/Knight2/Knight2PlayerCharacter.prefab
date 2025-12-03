@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 9209053299445734594}
   m_Layer: 6
   m_Name: Knight2PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,9 +186,9 @@ MonoBehaviour:
     m_Bits: 128
   move: {x: 0, y: 0}
   checkpoint: {fileID: 0}
-  hud: {fileID: 6516436418343995560, guid: 13ce74c72a036eb47ac0795776966c47, type: 3}
   jumpForce: 10
   moveSpeed: 10
+  points: 0
   gravity: -9.8
   drag: 0.9
   airDrag: 0.5
@@ -234,7 +234,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 64

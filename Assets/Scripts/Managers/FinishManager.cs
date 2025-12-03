@@ -4,14 +4,22 @@ using Fusion;
 public class FinishManager : NetworkBehaviour
 {
     public GameObject player;
-    public Canvas canvas;
-    private void OnTriggerStay2D(Collider2D collision)
+    public GameObject canvas;
+    public GameObject timer;
+    public KnightPlayerBehavior playerBehavior;
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if(collision.gameObject.GetComponent<KnightPlayerBehavior>() != null)
+        Debug.Log("1");
+        playerBehavior = other.gameObject.GetComponent<KnightPlayerBehavior>();
+        if (playerBehavior != null)
         {
-            player = collision.gameObject;
-            player.GetComponent<KnightPlayerBehavior>().OnFinish();
+            Debug.Log("2");
+            player = other.gameObject;
+            Debug.Log("3");
+            playerBehavior.OnFinish();
+            Debug.Log("4");
             OnFinish();
+            Debug.Log("5");
         }
     }
     public void onButtonPress()
@@ -20,6 +28,7 @@ public class FinishManager : NetworkBehaviour
     }
     public void OnFinish()
     {
-        canvas = Instantiate(canvas);
+        timer.SetActive(false);
+        canvas = Instantiate(canvas, Vector2.zero, Quaternion.identity);
     }
 }
