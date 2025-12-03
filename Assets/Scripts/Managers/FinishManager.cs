@@ -7,6 +7,8 @@ public class FinishManager : NetworkBehaviour
     public GameObject canvas;
     public GameObject timer;
     public KnightPlayerBehavior playerBehavior;
+
+    public int points;
     private void OnTriggerStay2D(Collider2D other)
     {
         Debug.Log("1");
@@ -25,6 +27,7 @@ public class FinishManager : NetworkBehaviour
     {
         timer.SetActive(false);
         canvas = Instantiate(canvas, Vector2.zero, Quaternion.identity);
+        canvas.GetComponent<FinishBehavior>().Pontuacao(playerBehavior.points + (int)ServerManager.instance.currentTime);
         playerBehavior.OnFinish();
     }
 }

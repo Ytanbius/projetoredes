@@ -102,6 +102,7 @@ public class KnightPlayerBehavior : NetworkBehaviour
 
     public void onDeath()
     {
+        points -= 10;
         GameManager.instance.LoadLastCheckPoint(this.gameObject, checkpoint);
     }
     public void GetInputs()

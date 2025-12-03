@@ -24,14 +24,18 @@ public class EnemyBehavior : NetworkBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.name == "CheckGround")
+        KnightPlayerBehavior playerBehavior = other.GetComponentInParent<KnightPlayerBehavior>();
+        if (other.gameObject.name == "CheckGround")
         {
-            KnightPlayerBehavior playerBehavior = other.GetComponentInParent<KnightPlayerBehavior>();
-            if (playerBehavior && !dead && other.GetComponent<BoxCollider2D>())
+            if (playerBehavior && !dead && other.GetComponent<BoxCollider2D>() && other.transform.position.y >= transform.position.y+transform.localScale.y/2)
             {
                 OnDeath();
                 Physics2D.IgnoreCollision(this.GetComponent<CapsuleCollider2D>(), playerBehavior.gameObject.GetComponent<BoxCollider2D>(), true);
             }
+        }
+        else if (playerBehavior && !dead)
+        {
+            playerBehavior.onDeath();
         }
     }
     private void OnDeath()
@@ -40,7 +44,7 @@ public class EnemyBehavior : NetworkBehaviour
         dead = true;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         rb.freezeRotation = true;
-        animator.SetBool("dead", true);
+        animator.SetTrigger("dead");
     }
 
     private IEnumerator TimeToDestroy()

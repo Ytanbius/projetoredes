@@ -111,7 +111,6 @@ MonoBehaviour:
   nearestTrap: {fileID: 0}
   escolhaUI: {fileID: 0}
   hud: {fileID: 3090048919180538521, guid: e04a263daf24e2544988db9456ab06d9, type: 3}
-  hudTimer: {fileID: 6516436418343995560, guid: 13ce74c72a036eb47ac0795776966c47, type: 3}
   _rb: {fileID: 0}
   move: {x: 0, y: 0}
   interact: 0
@@ -361,7 +360,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &5874053963720657794
 MonoBehaviour:
   m_ObjectHideFlags: 0

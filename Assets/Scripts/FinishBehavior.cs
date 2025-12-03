@@ -6,8 +6,8 @@ public class FinishBehavior : NetworkBehaviour
 {
     public TextMeshProUGUI pointsText;
 
-    public void Pontuacao(KnightPlayerBehavior player)
+    public void Pontuacao(int points)
     {
-        pointsText.text = player.points.ToString();
+        pointsText.text = points.ToString();
     }
 }

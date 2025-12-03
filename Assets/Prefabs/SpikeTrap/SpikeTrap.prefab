@@ -185,6 +185,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  vanishCD: 3
 --- !u!114 &1403240986817997425
 MonoBehaviour:
   m_ObjectHideFlags: 0
